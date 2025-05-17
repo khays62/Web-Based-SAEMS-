@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exams - Exam Management System</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/exams.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>EMS</h2>
+                <button id="sidebarToggle" class="btn btn-icon">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li>
+                        <a href="dashboard.html">
+                            <i class="fas fa-home"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="classes.html">
+                            <i class="fas fa-chalkboard"></i>
+                            <span>Classes</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="subjects.html">
+                            <i class="fas fa-book"></i>
+                            <span>Subjects</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="students.html">
+                            <i class="fas fa-user-graduate"></i>
+                            <span>Students</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="users.html">
+                            <i class="fas fa-users"></i>
+                            <span>Users</span>
+                        </a>
+                    </li>
+                    <li id="sidebarExamsLi">
+                        <a href="exams.html" id="sidebarExamsLink">
+                            <i class="fas fa-file-alt"></i>
+                            <span>Exams</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="score-entry.html">
+                            <i class="fas fa-pen"></i>
+                            <span>Score Entry</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="results.html">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Results</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="settings.html">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Navigation -->
+            <header class="top-nav">
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="Search exams...">
+                </div>
+                <div class="top-nav-right">
+                    <button id="themeToggle" class="btn btn-icon">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <div class="user-menu">
+                        <button class="btn btn-icon" id="userMenuToggle">
+                            <i class="fas fa-user-circle"></i>
+                        </button>
+                        <div class="user-dropdown">
+                            <a href="profile.html">
+                                <i class="fas fa-user"></i>
+                                Profile
+                            </a>
+                            <a href="#" id="logoutBtn">
+                                <i class="fas fa-sign-out-alt"></i>
+                                Logout
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Exams Content -->
+            <div class="exams-content">
+                <div class="content-header">
+                    <h1>Exams</h1>
+                    <button class="btn btn-primary" id="addExamBtn">
+                        <i class="fas fa-plus"></i>
+                        Add New Exam
+                    </button>
+                </div>
+
+                <!-- Exams Table -->
+                <div class="table-container">
+                    <table class="data-table" id="examsTable">
+                        <thead>
+                            <tr>
+                                <th>Exam ID</th>
+                                <th>Title</th>
+                                <th>Subject</th>
+                                <th>Class</th>
+                                <th>Date</th>
+                                <th>Duration</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Exam rows will be dynamically added here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Add/Edit Exam Modal -->
+    <div class="modal" id="examModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Add New Exam</h2>
+                <button class="btn btn-icon modal-close" id="closeModalBtn">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="examForm" onsubmit="return false;">
+                <div class="form-group">
+                    <label for="examTitle">Exam Title</label>
+                    <input type="text" id="examTitle" name="examTitle" required placeholder="Enter exam title (e.g., Final, Mid-Term)">
+                </div>
+                <div class="form-group">
+                    <label for="examClass">Class</label>
+                    <select id="examClass" name="examClass" required>
+                        <option value="">Select Class</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="examSubject">Subject</label>
+                    <select id="examSubject" name="examSubject" required>
+                        <option value="">Select Subject</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="examDate">Date</label>
+                    <input type="date" id="examDate" name="examDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="examDuration">Duration (minutes)</label>
+                    <select id="examDuration" name="examDuration" required>
+                        <option value="">Select Duration</option>
+                        <option value="30">30 minutes</option>
+                        <option value="45">45 minutes</option>
+                        <option value="60">60 minutes</option>
+                        <option value="90">90 minutes</option>
+                        <option value="120">120 minutes</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="teacherName">Teacher Name</label>
+                    <input type="text" id="teacherName" name="teacherName" required placeholder="Enter teacher's full name">
+                </div>
+                <div class="form-group">
+                    <label for="examContent">Exam Content</label>
+                    <textarea id="examContent" name="examContent" rows="10" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;"></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary modal-close">Cancel</button>
+                    <button type="submit" class="btn btn-primary" id="saveExamBtn">Save Exam</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- View Exam Modal -->
+    <div class="modal" id="viewExamModal">
+        <div class="modal-content">
+            <div class="modal-header" style="display: flex; align-items: center; justify-content: space-between;">
+                <h2 style="margin: 0;">Exam Details</h2>
+                <div class="modal-actions" style="display: flex; align-items: center; gap: 10px;">
+                    <button class="btn btn-primary" id="printExamBtn">
+                        <i class="fas fa-print"></i>
+                        Print Exam
+                    </button>
+                    <button class="btn btn-icon modal-close" id="closeModalBtnLeft">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="exam-details">
+                    <p><i class="fas fa-flask"></i> Subject: <span id="viewSubject"></span></p>
+                    <p><i class="fas fa-graduation-cap"></i> Class: <span id="viewClass"></span></p>
+                    <p><i class="fas fa-file-alt"></i> Exam Title: <span id="viewTitle"></span></p>
+                    <p><i class="fas fa-calendar"></i> Date: <span id="viewDate"></span></p>
+                    <p><i class="fas fa-clock"></i> Duration: <span id="viewDuration"></span></p>
+                    <p><i class="fas fa-user"></i> Teacher Name: <span id="viewTeacher"></span></p>
+                    <p><i class="fas fa-user-graduate"></i> Student Name: <span id="viewStudent">_________________________</span></p>
+                </div>
+                <div class="exam-content">
+                    <h3>Exam Content:</h3>
+                    <div id="viewContent"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="messageContainer" class="message-container"></div>
+
+    <style>
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            #printExamContent, #printExamContent * {
+                visibility: visible;
+            }
+            #printExamContent {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                padding: 20px;
+            }
+            .exam-header {
+                text-align: center;
+                margin-bottom: 30px;
+            }
+            .exam-header h1 {
+                font-size: 24px;
+                margin-bottom: 10px;
+            }
+            .exam-info {
+                margin-bottom: 20px;
+                border-bottom: 1px solid #000;
+                padding-bottom: 10px;
+            }
+            .exam-info p {
+                margin: 5px 0;
+            }
+            .exam-content {
+                margin-top: 20px;
+            }
+            .student-info {
+                margin-top: 40px;
+                border-top: 1px solid #000;
+                padding-top: 10px;
+            }
+        }
+    </style>
+
+    <script src="js/theme.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script src="js/exams.js"></script>
+    <script>
+        // Highlight Exams in sidebar as active
+        document.addEventListener('DOMContentLoaded', function() {
+            var examsLi = document.getElementById('sidebarExamsLi');
+            if (examsLi) {
+                examsLi.classList.add('active');
+            }
+        });
+    </script>
+</body>
+</html> 
