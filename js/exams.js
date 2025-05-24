@@ -105,7 +105,6 @@ document.addEventListener('DOMContentLoaded', () => {
             
             return `
                 <tr>
-                    <td>${exam.examClassUniqueId || ''}</td>
                     <td>${exam.title}</td>
                     <td>${classInfo ? classInfo.name : ''}</td>
                     <td>${subjectInfo ? subjectInfo.name : ''}</td>
@@ -124,7 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     </td>
                 </tr>
             `;
-        }).join('') || '<tr><td colspan="7">No exams found.</td></tr>';
+        }).join('') || '<tr><td colspan="6">No exams found.</td></tr>';
     }
 
     // Function to open exam modal
@@ -180,12 +179,8 @@ document.addEventListener('DOMContentLoaded', () => {
             showMessage('Exam updated successfully.', 'success');
         } else {
             // Add
-            // Generate unique Exam ID for the class
-            const classExams = exams.filter(exam => exam.classId === classId);
-            const nextExamNumber = classExams.length + 1;
-            const examClassUniqueId = `exam${nextExamNumber}`;
             const newId = 'EXM' + (Date.now() % 1000000).toString().padStart(4, '0');
-            exams.push({ id: newId, examClassUniqueId, title, classId, subjectId, date, duration, teacherName, content });
+            exams.push({ id: newId, title, classId, subjectId, date, duration, teacherName, content });
             showMessage('Exam added successfully.', 'success');
         }
         localStorage.setItem('exams', JSON.stringify(exams));

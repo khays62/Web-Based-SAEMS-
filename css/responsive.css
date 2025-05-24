@@ -1,0 +1,276 @@
+/* Responsive Design Rules */
+
+/* Large screens (default) */
+:root {
+    --sidebar-width: 250px;
+    --sidebar-collapsed-width: 60px;
+    --top-nav-height: 60px;
+    --content-padding: 2rem;
+}
+
+/* Medium screens (tablets) */
+@media (max-width: 1024px) {
+    .dashboard-container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+
+    .sidebar.collapsed {
+        width: 100%;
+    }
+
+    .main-content {
+        margin-left: 0;
+    }
+
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .table-container {
+        overflow-x: auto;
+    }
+
+    .modal-content {
+        width: 90%;
+        max-width: 600px;
+    }
+}
+
+/* Small screens (mobile landscape) */
+@media (max-width: 768px) {
+    :root {
+        --content-padding: 1rem;
+    }
+
+    .top-nav {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 0.5rem;
+    }
+
+    .search-bar {
+        width: 100%;
+    }
+
+    .top-nav-right {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .content-header {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .header-actions {
+        width: 100%;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .filter-select {
+        width: 100%;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-group {
+        margin-bottom: 1rem;
+    }
+
+    .form-actions {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .form-actions button {
+        width: 100%;
+    }
+}
+
+/* Extra small screens (mobile portrait) */
+@media (max-width: 480px) {
+    .sidebar-header h2 {
+        font-size: 1.2rem;
+    }
+
+    .sidebar-nav a {
+        padding: 0.6rem 0.8rem;
+    }
+
+    .stat-card {
+        padding: 1rem;
+    }
+
+    .stat-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+
+    .stat-info p {
+        font-size: 1.2rem;
+    }
+
+    .card-header {
+        padding: 1rem;
+    }
+
+    .card-body {
+        padding: 1rem;
+    }
+
+    .modal-content {
+        width: 95%;
+        margin: 1rem;
+    }
+
+    .modal-header {
+        padding: 1rem;
+    }
+
+    .modal-body {
+        padding: 1rem;
+    }
+
+    .table-container {
+        margin: 0 -1rem;
+    }
+
+    .data-table th,
+    .data-table td {
+        padding: 0.5rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* Print styles */
+@media print {
+    .sidebar,
+    .top-nav,
+    .header-actions,
+    .btn {
+        display: none !important;
+    }
+
+    .main-content {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .table-container {
+        overflow: visible !important;
+    }
+
+    .data-table {
+        width: 100% !important;
+    }
+
+    .data-table th,
+    .data-table td {
+        border: 1px solid #000 !important;
+    }
+}
+
+/* Utility classes for responsive design */
+.hide-on-mobile {
+    display: block;
+}
+
+.show-on-mobile {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .hide-on-mobile {
+        display: none;
+    }
+
+    .show-on-mobile {
+        display: block;
+    }
+}
+
+/* Responsive typography */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    h2 {
+        font-size: 1.3rem;
+    }
+
+    h3 {
+        font-size: 1.1rem;
+    }
+
+    p, li, td, th {
+        font-size: 0.9rem;
+    }
+}
+
+/* Responsive form elements */
+@media (max-width: 768px) {
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="number"],
+    select,
+    textarea {
+        font-size: 16px; /* Prevents zoom on mobile */
+    }
+
+    .form-group {
+        margin-bottom: 1rem;
+    }
+}
+
+/* Responsive table */
+@media (max-width: 768px) {
+    .data-table {
+        display: block;
+        width: 100%;
+    }
+
+    .data-table thead {
+        display: none;
+    }
+
+    .data-table tbody,
+    .data-table tr,
+    .data-table td {
+        display: block;
+        width: 100%;
+    }
+
+    .data-table tr {
+        margin-bottom: 1rem;
+        border: 1px solid var(--border-color);
+        border-radius: 5px;
+    }
+
+    .data-table td {
+        text-align: right;
+        padding: 0.5rem;
+        position: relative;
+        padding-left: 50%;
+    }
+
+    .data-table td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 0.5rem;
+        width: 45%;
+        text-align: left;
+        font-weight: bold;
+    }
+} 

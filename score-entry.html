@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/dashboard.css">
     <link rel="stylesheet" href="css/score-entry.css">
+    <link rel="stylesheet" href="css/responsive.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
@@ -151,7 +152,26 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <!-- Student rows will be added dynamically -->
+                            <tr>
+                                <td data-label="Student ID">STU001</td>
+                                <td data-label="Student Name">John Doe</td>
+                                <td data-label="Score">
+                                    <input type="number" min="0" max="100" class="score-input">
+                                </td>
+                                <td data-label="Grade">
+                                    <select class="grade-select">
+                                        <option value="">Select Grade</option>
+                                        <option value="A">A</option>
+                                        <option value="B">B</option>
+                                        <option value="C">C</option>
+                                        <option value="D">D</option>
+                                        <option value="F">F</option>
+                                    </select>
+                                </td>
+                                <td data-label="Remarks">
+                                    <input type="text" class="remarks-input">
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
